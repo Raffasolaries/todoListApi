@@ -1,10 +1,12 @@
 'use strict';
+/* const url = require('url');
+const query = require('querystring'); */
 
 var mongoose = require('mongoose'),
   Task = mongoose.model('Tasks');
 
 exports.list_all_tasks = function(req, res) {
-  Task.find({}, function(err, task) {
+  Task.find({ user_id: req.query.user_id }, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
